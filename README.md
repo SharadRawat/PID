@@ -38,6 +38,11 @@ There's an experimental patch for windows in this [PR](https://github.com/udacit
 Tips for setting up your environment can be found [here](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/0949fca6-b379-42af-a919-ee50aa304e6a/lessons/f758c44c-5e40-4e01-93b5-1a82aa4e044f/concepts/23d376c7-0195-4276-bdf0-e02f1f3c665d)
 
 ## Reflection
+Effect of P-I-D
+P -> The proportional component depends only on the difference between the set point and the process variable. This difference is referred to as the Error term. Inceasing this term leads to the amount of response required to reduce the error. However, this may lead to oscillation, since it is overshoots. This was observed in the project when the vehicle was constantly oscillating left and right.
+I -> The integral component sums the error term over time. The result is that even a small error term will cause the integral component to increase slowly. The integral response will continually increase over time unless the error is zero, so the effect is to drive the Steady-State error to zero.
+D -> The derivative component causes the output to decrease if the process variable is increasing rapidly. The derivative response is proportional to the rate of change of the process variable. Increasing the derivative time (Td) parameter will cause the control system to react more strongly to changes in the error term and will increase the speed of the overall control system response. In the project, when Kd is increased, the rate of response leads improves, hence the oscillations are reduced.
+
 In this project PID is implemented to control the steering of a car in the simulator. The throttle is a fixed value. Although, for tuning, there are many techniques such as Z-N method and twiddle, I've selected the coefficients manually.
 For Z-N, we need to have the time period of oscillation and for twiddle, may/may not give a global optima of coefficients. I've used the approach described (which is loosely based on Z-N) at https://robotics.stackexchange.com/questions/167/what-are-good-strategies-for-tuning-pid-loops for this:
 
